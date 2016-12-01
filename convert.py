@@ -33,5 +33,5 @@ for item in items:
     current_post_id += 1
 
 site_json['next_post_id'] = current_post_id
-open(site_json_path, 'wb').write(json.dumps(site_json, ensure_ascii=False).encode())
+open(site_json_path, 'wb').write(json.dumps(site_json, ensure_ascii=False, indent="\t").encode())
 print('Good! Convert Finished, Please sign site and published, then refresh the page, you will see your WordPress post')
