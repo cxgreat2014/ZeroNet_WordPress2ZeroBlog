@@ -4,7 +4,7 @@ import json
 import html2text
 
 site_json_path = ""
-# Example: site_json_path = "N:\ZeroBundle\ZeroNet\data\1NtyUa8gvLkwJeHYebVkZXA9hespXvTRFv\data\data.json"
+# Example: site_json_path = "N:\\ZeroBundle\\ZeroNet\\data\\1NtyUa8gvLkwJeHYebVkZXA9hespXvTRFv\\data\\data.json"
 WordPress_ExportXML_Path = ""
 # Your WordPress Export XML File Path
 if not site_json_path or not WordPress_ExportXML_Path:
