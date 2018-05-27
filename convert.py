@@ -24,12 +24,12 @@ posts = site_json['post']
 
 DOMTree = xml.dom.minidom.parse(WordPress_ExportXML_Path)
 items = DOMTree.documentElement.getElementsByTagName("item")
-for item in items:
+for idx,item in enumerate(items):
     if not item.getElementsByTagName('content:encoded')[0].childNodes:
         continue
     post_title = item.getElementsByTagName('title')[0].childNodes[0].data
-    post_time = items[1].getElementsByTagName('wp:post_date')[0].childNodes[0].data
-    post_time = time.mktime(time.strptime(post_time, '%Y-%m-%d %H:%M:%S')) + 0.001  # 对齐三位小数 :P
+    post_time = items[idx].getElementsByTagName('pubDate')[0].childNodes[0].data
+    post_time = time.mktime(time.strptime(post_time, '%a, %d %b %Y %H:%M:%S +0000'))  # 对齐三位小数 :P
     post_body = h.handle(item.getElementsByTagName('content:encoded')[0].childNodes[0].data)
     post = {"post_id": current_post_id, "title": post_title, "date_published": post_time,
             "body": post_body}
