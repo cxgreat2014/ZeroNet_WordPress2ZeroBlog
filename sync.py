@@ -3,6 +3,7 @@ import xml.dom.minidom
 import time
 import json
 import html2text
+import urllib
 import configparser
 
 config = configparser.ConfigParser()
@@ -10,9 +11,10 @@ config.read('config.ini')
 
 # Read config from config.ini file.
 site_json_path = config.get('main', 'site_json_path')
-wordpress_xml_path = config.get('main', 'wordpress_xml_path')
+wordpress_rss_path = config.get('main', 'wordpress_rss_path')
 
-if not site_json_path or not wordpress_xml_path:
+
+if not site_json_path or not wordpress_rss_path:
     print('Please read README.md and edit config.ini first!')
     exit(1)
 
@@ -26,7 +28,8 @@ titles = []
 for idx,title in enumerate(posts):
     titles.append(posts[idx]['title']) 
 
-DOMTree = xml.dom.minidom.parse(wordpress_xml_path)
+resource = urllib.request.urlopen(wordpress_rss_path).read()
+DOMTree = xml.dom.minidom.parseString(resource)
 items = DOMTree.documentElement.getElementsByTagName("item")
 for idx,item in enumerate(items):
     if not item.getElementsByTagName('content:encoded')[0].childNodes:

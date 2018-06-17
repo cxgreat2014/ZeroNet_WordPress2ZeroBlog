@@ -1,0 +1,8 @@
+
+*.xml
+
+*.bak
+
+\.idea/
+
+empty_data\.json
