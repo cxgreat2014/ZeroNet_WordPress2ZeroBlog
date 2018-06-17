@@ -3,19 +3,17 @@ import xml.dom.minidom
 import time
 import json
 import html2text
-from urllib import request
+import configparser
 
-# -------Edit Below-------
-site_json_path = ""
-# Example: site_json_path = "/home/gao/.ZeroBundle/ZeroNet/data/1KmtEgT4RenRandQnG7jcm5BQ7bLAwQZES/data/data.json"
-wordpress_xml_path = ""
-# Your WordPress Export XML File Path "/home/gao/Desktop/wordpress.xml"
-# check_same_title_flag = True
-# True: Blog post with same title won't be imported. Set ture when you want to sync your wordpress to zeroblog,
-# -------Edit End-------
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+# Read config from config.ini file.
+site_json_path = config.get('main', 'site_json_path')
+wordpress_xml_path = config.get('main', 'wordpress_xml_path')
 
 if not site_json_path or not wordpress_xml_path:
-    print('Please Edit Me And Set site_json_path and wordpress_xml_path')
+    print('Please read README.md and edit config.ini first!')
     exit(1)
 
 h = html2text.HTML2Text()
