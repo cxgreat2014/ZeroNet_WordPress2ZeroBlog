@@ -1,7 +1,12 @@
+
 # ZeroNet_WordPress2ZeroBlog
 Convert WordPress post to ZeroBlog
 
 ## Usage
+
+install `html2text` python package first.
+
+`pip3 install html2text`
 
 ### Convert
 
@@ -16,7 +21,3 @@ If you want to sync your WordPress posts to ZeroBlog, which means after you publ
 
 1. Download this repo and edit all variables except `wordpress_xml_path` in `config.ini`.
 2. setup a crontab task `bash run.sh`.
-
-# Notice
-## It Need html2text
-## pip3 install html2text
