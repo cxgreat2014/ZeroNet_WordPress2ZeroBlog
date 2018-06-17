@@ -3,19 +3,19 @@ import xml.dom.minidom
 import time
 import json
 import html2text
-from urllib import request
+import urllib
 
 # -------Edit Below-------
 site_json_path = ""
 # Example: site_json_path = "/home/gao/.ZeroBundle/ZeroNet/data/1KmtEgT4RenRandQnG7jcm5BQ7bLAwQZES/data/data.json"
-wordpress_xml_path = ""
-# Your WordPress Export XML File Path "/home/gao/Desktop/wordpress.xml"
+wordpress_rss_path = ""
+# Your WordPress Export rss File Path "http://www.luoxufeiyan.com/feed/"
 # check_same_title_flag = True
 # True: Blog post with same title won't be imported. Set ture when you want to sync your wordpress to zeroblog,
 # -------Edit End-------
 
-if not site_json_path or not wordpress_xml_path:
-    print('Please Edit Me And Set site_json_path and wordpress_xml_path')
+if not site_json_path or not wordpress_rss_path:
+    print('Please Edit Me And Set site_json_path and wordpress_rss_path first!')
     exit(1)
 
 h = html2text.HTML2Text()
@@ -28,7 +28,8 @@ titles = []
 for idx,title in enumerate(posts):
     titles.append(posts[idx]['title']) 
 
-DOMTree = xml.dom.minidom.parse(wordpress_xml_path)
+resource = urllib.request.urlopen(wordpress_rss_path).read()
+DOMTree = xml.dom.minidom.parseString(resource)
 items = DOMTree.documentElement.getElementsByTagName("item")
 for idx,item in enumerate(items):
     if not item.getElementsByTagName('content:encoded')[0].childNodes:
