@@ -13,7 +13,7 @@ python3 sync.py
 
 # [TODO] Don't publish zeroblog if no new post found. 
 if [ $? -eq 0 ]; then
-    python zeronet.py siteSign --publish $znaddr $znkey
+    python $znpath/zeronet.py siteSign --publish $znaddr $znkey
     echo "updated to ZeroBlog."
 else
     echo "No new post yet, exit."

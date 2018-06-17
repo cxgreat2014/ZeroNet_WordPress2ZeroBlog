@@ -20,4 +20,4 @@ If you want to convert your WordPress posts to ZeroBlog once only, follow the gu
 If you want to sync your WordPress posts to ZeroBlog, which means after you published a new post on WordPress, your ZeroBlog can be updated automatically, follow this guide.
 
 1. Download this repo and edit all variables except `wordpress_xml_path` in `config.ini`.
-2. setup a crontab task `bash run.sh`.
+2. setup a crontab task like `0 */2 * * * /bin/bash /YOURPATH/ZeroNet_WordPress2ZeroBlog/run.sh >/dev/null 2>&1`.
